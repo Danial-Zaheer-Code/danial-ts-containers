@@ -1,4 +1,4 @@
-import {Stack} from "../src/stack"
+import {Stack} from "../src/Stack"
 
 describe("Stack Tests", () => {
 	let stack : Stack<number>;
