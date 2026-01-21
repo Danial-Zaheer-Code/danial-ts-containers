@@ -1,6 +1,5 @@
-import { mock } from "node:test";
+import { deepStrictEqual } from "node:assert";
 import { Deque } from "../src/Deque"
-
 
 describe("Deque Tests", () => {
 	let deque: Deque<number>;
@@ -14,22 +13,44 @@ describe("Deque Tests", () => {
 			expect(deque.size()).toEqual(0);
 		})
 
-		test("Size is 1 when 10 is pushed.", () => {
+		test("pushBack should increase size by one.", () => {
+			const currentSize = deque.size();
 			deque.pushBack(10);
-			expect(deque.size()).toEqual(1);
+			expect(deque.size()).toEqual(currentSize + 1);
 		})
 
-		test("Size is 2 when after pushing 10 and 20.", () => {
-			deque.pushBack(10);
-			deque.pushBack(20);
-			expect(deque.size()).toEqual(2);
+		test("pushFront should increase size by one.", () => {
+			const currentSize = deque.size();
+			deque.pushFront(10);
+			expect(deque.size()).toEqual(currentSize + 1);	
 		})
 
-		test("Size is 1 after pushing 10, 20 and popping once.", () => {
+		test("popBack should decrease size by one.", () => {
 			deque.pushBack(10);
-			deque.pushBack(20);
+			const currentSize = deque.size();
 			deque.popBack();
-			expect(deque.size()).toEqual(1);
+			expect(deque.size()).toEqual(currentSize - 1);
+		})
+
+		test("popFront should decrease size by one.", () => {
+			deque.pushFront(10);
+			const currentSize = deque.size();
+			deque.popFront();
+			expect(deque.size()).toEqual(currentSize - 1);	
+		})
+
+		test("peekBack should not change size.", () => {
+			deque.pushBack(10);
+			const currentSize = deque.size();
+			deque.peekBack();
+			expect(deque.size()).toEqual(currentSize);
+		})
+
+		test("peekFront should not change size.", () => {
+			deque.pushFront(10);
+			const currentSize = deque.size();
+			deque.peekFront();
+			expect(deque.size()).toEqual(currentSize);
 		})
 
 		test("Size is 0 when deque is cleared.", () => {
@@ -63,6 +84,12 @@ describe("Deque Tests", () => {
 			expect(() => deque.popBack()).toThrow(Deque.EmptyDequeError);
 		})
 
+		test("Calling popBack() after clearing deque should throw EmptyDequeError.", () => {
+			deque.pushBack(10);
+			deque.clear();
+			expect(() => deque.popBack()).toThrow(Deque.EmptyDequeError);
+		})
+
 		test("Calling popBack after pushing 10 should return 10.", () => {
 			deque.pushBack(10);
 			expect(deque.popBack()).toEqual(10);
@@ -80,10 +107,29 @@ describe("Deque Tests", () => {
 			deque.popBack();
 			expect(deque.popBack()).toEqual(10);
 		})
+
+		test("Calling popBack after pushing 10 and 20 on front Should return 10.", () => {
+			deque.pushFront(10);
+			deque.pushFront(20);
+			expect(deque.popBack()).toEqual(10);
+		})
+
+		test("Calling pop back after pushing 10 on front, 20 on back, and 30 on front should return 20", () => {
+			deque.pushFront(10);
+			deque.pushBack(20);
+			deque.pushFront(30);
+			expect(deque.popBack()).toEqual(20);
+		})
 	})
 
 	describe("peekBack()", () => {
 		test("Calling peekBack on an empty deque should throw EmptyDequeError.", () => {
+			expect(() => deque.peekBack()).toThrow(Deque.EmptyDequeError);
+		})
+
+		test("Calling peekBack after clearing deque should throw EmptyDequeError.", () => {
+			deque.pushBack(10);
+			deque.clear();
 			expect(() => deque.peekBack()).toThrow(Deque.EmptyDequeError);
 		})
 
@@ -104,6 +150,12 @@ describe("Deque Tests", () => {
 			expect(() => deque.popFront()).toThrow(Deque.EmptyDequeError);
 		})
 
+		test("Calling popFront after clearing deque should throw EmptyDequeError.", () => {
+			deque.pushBack(10);
+			deque.clear();
+			expect(() => deque.popFront()).toThrow(Deque.EmptyDequeError);
+		})
+
 		test("Calling popFront after pushing 10 on front should return 10.", () => {
 			deque.pushFront(10);
 			expect(deque.popFront()).toEqual(10);
@@ -121,10 +173,29 @@ describe("Deque Tests", () => {
 			deque.popFront();
 			expect(deque.popFront()).toEqual(10);
 		})
+
+		test("Calling popFront after pushing 10 and 20 on back should return 10.", () => {
+			deque.pushBack(10);
+			deque.pushBack(20);
+			expect(deque.popFront()).toEqual(10);
+		})
+
+		test("Calling popFront after pushing 10 on back, 20 on front, and 30 on back shulr return 20.", () => {
+			deque.pushBack(10);
+			deque.pushFront(20);
+			deque.pushBack(30);
+			expect(deque.popFront()).toEqual(20);
+		})
 	})
 
 	describe("peekFront()", () => {
 		test("Calling peekFront on an empty deque should throw EmptyDequeError.", () => {
+			expect(() => deque.peekFront()).toThrow(Deque.EmptyDequeError);
+		})
+
+		test("Calling peekFront after clearning deque should throw EmptyDequeError.", () => {
+			deque.pushFront(10);
+			deque.clear();
 			expect(() => deque.peekFront()).toThrow(Deque.EmptyDequeError);
 		})
 
