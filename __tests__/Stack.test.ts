@@ -1,7 +1,7 @@
-import {Stack} from "../src/Stack"
+import { Stack } from "../src/Stack"
 
 describe("Stack Tests", () => {
-	let stack : Stack<number>;
+	let stack: Stack<number>;
 
 	beforeEach(() => {
 		stack = new Stack();
@@ -11,21 +11,8 @@ describe("Stack Tests", () => {
 		expect(stack.isEmpty()).toBe(true);
 	});
 
-	test("Is not empty after one push.", () => {
+	test("Is not empty after push.", () => {
 		stack.push(10);
-		expect(stack.isEmpty()).toBe(false);
-	});
-
-	test("Is empty after one push and one pop.", () => {
-		stack.push(10);
-		stack.pop();
-		expect(stack.isEmpty()).toBe(true);
-	});
-
-	test("Is not empty after two push and one pop.", () => {
-		stack.push(10);
-		stack.push(20);
-		stack.pop();
 		expect(stack.isEmpty()).toBe(false);
 	});
 
@@ -33,23 +20,34 @@ describe("Stack Tests", () => {
 		expect(stack.size()).toEqual(0);
 	});
 
-	test("Size should be 1 after one push.", () => {
+	test("Size should increase after push.", () => {
+		const currentSize = stack.size();
 		stack.push(10);
-		expect(stack.size()).toEqual(1);
+		expect(stack.size()).toEqual(currentSize + 1);
 	});
 
-	test("Size should be 0 after one push and one pop.", () => {
+	test("Size should decrease after pop.", () => {
 		stack.push(10);
+		const currentSize = stack.size();
 		stack.pop();
-		expect(stack.size()).toEqual(0);
+		expect(stack.size()).toEqual(currentSize - 1);
 	});
 
-	test("Size should be 1 after two push and one pop.", () => {
+	test("Size become zero after clearing the stack.", () => {
 		stack.push(10);
 		stack.push(20);
-		stack.pop();
-		expect(stack.size()).toEqual(1);
-	});
+		stack.clear();
+
+		expect(stack.size()).toEqual(0);
+	})
+
+	test("Size should not change after peek.", () => {
+		stack.push(10);
+		const currentSize = stack.size();
+		stack.peek();
+		expect(stack.size()).toEqual(currentSize);
+
+	})
 
 	test("Calling pop on an empty stack should throw EmptyStackError.", () => {
 		expect(() => stack.pop()).toThrow(Stack.EmptyStackError);
@@ -71,7 +69,15 @@ describe("Stack Tests", () => {
 		stack.push(20);
 		stack.pop();
 		expect(stack.pop()).toEqual(10);
-	
+
+	});
+
+	test("stack becomes empty after popping all elements", () => {
+		stack.push(1);
+		stack.push(2);
+		stack.pop();
+		stack.pop();
+		expect(stack.isEmpty()).toBe(true);
 	});
 
 	test("Calling peek on an empty Stack should throw EmptyStackError.", () => {
@@ -83,16 +89,17 @@ describe("Stack Tests", () => {
 		expect(stack.peek()).toEqual(10);
 	});
 
-	test("Calling peek should return 10 after pushing 10, 20 and popping once.", () => {
+	test("Calling peek should return 20 after pushing 10 and 20.", () => {
 		stack.push(10);
 		stack.push(20);
-		stack.pop();
-		expect(stack.peek()).toEqual(10);
+		expect(stack.peek()).toEqual(20);
 	});
 
-	test("Calling peek should not change size.",() => {
-		stack.push(10);
-		stack.peek();
-		expect(stack.size()).toEqual(1);
+	test("stack works after being emptied", () => {
+		stack.push(1);
+		stack.pop();
+		stack.push(2);
+		expect(stack.pop()).toBe(2);
 	});
+
 })
