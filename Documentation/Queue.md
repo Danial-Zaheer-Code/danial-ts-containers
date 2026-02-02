@@ -1,5 +1,5 @@
-## Stack Documentation
-**Purpose**: Store elements in LIFO (Last In First Out) order.
+## Queue Documentation
+**Purpose**: Store elements in FIFO (First In First Out) order.
 
 ### Methods:
 
@@ -22,7 +22,7 @@
   }
 
 - **`size(): number`**
-  Returns the number of elements in the stack.
+  Returns the number of elements in the queue.
 
   **Example:**
   ```ts
