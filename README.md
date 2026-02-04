@@ -15,6 +15,37 @@ The goal of this project is to offer clean, generic, and easy-to-use implementat
 
 Detailed documentation for each data structure is available in the `/docs` directory.
 
+## Installation
+
+You can install **danial-ts-containers** via npm, yarn, or pnpm:
+
+```bash
+# Using npm
+npm install ts-collections
+
+# Using yarn
+yarn add ts-collections
+
+# Using pnpm
+pnpm add ts-collections
+
+### Usage
+Import the data structures you need in your TypeScript project:
+
+```ts
+import { Stack, Queue, Deque } from "ts-collections";
+
+// Example: Using Stack
+const stack = new Stack<number>();
+stack.push(10);
+stack.push(20);
+console.log(stack.pop()); // Output: 20
+
+### Notes
+
+- Written in TypeScript with full type declarations (.d.ts) for type safety.
+- Compatible with Node.js, browser, or any TypeScript project.
+
 ## Versioning
 
 This project follows Semantic Versioning (SemVer):
