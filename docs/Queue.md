@@ -39,7 +39,7 @@
 
 
 - **`push(item: T): void`**  
-  Adds an element `item` to the frnt of the queue.
+  Adds an element `item` to the front of the queue.
    
   **Example:**  
   ```ts
