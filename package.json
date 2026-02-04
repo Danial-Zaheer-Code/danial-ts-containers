@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Danial-Zaheer-Code/TypeScript_Data_Structures.git"
+    "url": "https://github.com/Danial-Zaheer-Code/danial-ts-containers.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Muhammad Danial Zaheer",
   "bugs": {
-    "url": "https://github.com/Danial-Zaheer-Code/TypeScript_Data_Structures/issues"
+    "url": "https://github.com/Danial-Zaheer-Code/danial-ts-containers/issues"
   },
-  "homepage": "https://github.com/Danial-Zaheer-Code/TypeScript_Data_Structures#readme",
+  "homepage": "https://github.com/Danial-Zaheer-Code/danial-ts-containers#readme",
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.5",
