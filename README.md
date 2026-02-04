@@ -1,4 +1,6 @@
-# Introduction
+# danial-ts-containers
+
+## Introduction
 This repository provides a collection of reusable and well-tested data structures implemented in TypeScript.  
 The goal of this project is to offer clean, generic, and easy-to-use implementations for learning and practical use.
 
