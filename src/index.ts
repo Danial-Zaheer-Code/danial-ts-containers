@@ -1,3 +1,3 @@
-export { Stack } from "./Stack"
-export { Queue } from "./Queue";
-export { Deque } from "./Deque";
+export { Stack } from "./Stack.js"
+export { Queue } from "./Queue.js";
+export { Deque } from "./Deque.js";
